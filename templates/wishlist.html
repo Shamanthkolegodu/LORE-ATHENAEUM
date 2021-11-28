@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <title>Library Page</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">LORE ATHENAEUM</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home/{{data['id']}}">Home</a></li>
+        <li><a href="/all_books/{{data['id']}}">Books</a></li>
+        <li><a href="/cart/{{data['id']}}">Cart</a></li>
+        <li><a href="/library/{{data['id']}}">Library</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="/payment_details/{{data['id']}}">Payment</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+      
+    <div>
+        <h4> ID : {{data['id']}}</h4>
+    </div>
+    <div class="container">
+        ITEMS:
+        <table class="table">
+            <tr> 
+                <th>ISBN</th>
+                <th>Year of Publishing</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Publisher</th>
+                <th>Author</th>
+                <th>Edition</th>
+                <th>Language</th>
+                <th>Category</th>
+                <th>Size</th>
+            </tr>
+            {% for row in data["wishlist_data"] %} 
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>{{ row[9] }}</td>
+                <td>{{ row[10] }}</td>
+                <td>
+                  <form action="{{ '/delete_wishlist/' ~ row[0]}}">
+                      <input type="submit" value = "Delete from wishlist" />
+                  </form>
+              </td>
+              <td>
+                <form action="{{ '/add_to_cart/' ~ row[0]}}">
+                    <input type="submit" value = "Add to cart" />
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
+

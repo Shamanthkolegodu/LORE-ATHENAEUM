@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <title>Home Page</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">LORE ATHENAEUM</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home/{{data['id']}}">Home</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="/cart/{{data['id']}}">Cart</a></li>
+            <li><a href="/library/{{data['id']}}">Library</a></li>
+            <li><a href="/wishlist/{{data['id']}}">Wishlist</a></li>
+            <li><a href="/payment_details/{{data['id']}}">Payment</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    
+    <div class="container">
+        <div>
+            <div class="display-4"> User : {{data['username']}} </div>
+            <div class="display-4"> ID : {{data['id']}}</div>
+        </div>
+        <br />
+        Search:
+        <input id="searchbar" onkeyup="search_book()" type="text" name="search" placeholder="Search books..">
+        <br />
+        <br />
+        ITEMS:
+        <br />
+        <table class="table">
+            <tr> 
+                <th>ISBN</th>
+                <th>Year of Publishing</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Publisher</th>
+                <th>Author</th>
+                <th>Edition</th>
+                <th>Language</th>
+                <th>Category</th>
+                <th>Size</th>
+                <th>Genre</th>
+            </tr>
+            <br>
+            <div>
+            {% for row in data["items"] %} 
+            <tr class='book'>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>{{ row[9] }}</td>
+                <td>{{ row[10] }}</td>
+                <td>{{ row[12] }}</td>
+
+                <td>
+                    <form action="{{ '/add_to_cart/' ~row[0] }}">
+                        <input type="submit" value = "Add to Cart" />
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ '/add_to_wishlist/' ~ row[0]}}">
+                        <input type="submit" value = "Add to WishList" />
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </div>
+        </table>
+    </div>
+    <script>
+        function search_book() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let x = document.getElementsByClassName('book');
+            console.log(x)
+            for (i = 0; i < x.length; i++) {
+                console.log(x[i].innerHTML.toLowerCase())
+                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                }
+                else {
+                    x[i].style.display="list-item";                 
+                }
+            }
+}
+
+
+    </script>
+</body>
+</html>
+
