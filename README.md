@@ -35,6 +35,16 @@ Store id, Customer Support containing Phone Number and Email-id.
 8. Sales - The Sales entity contains the following attributes: Sales-id, Total Revenue, Number of
 copies sold.
 
+## ER Diagram of ebooks store
 ![alt ps](https://github.com/Shamanthkolegodu/LoreAthenaeum-Ebooks-store/blob/main/ER-Diagram.jpg)
 
+## Relational Schema of ebooks store
+![alt ps](https://github.com/Shamanthkolegodu/LoreAthenaeum-Ebooks-store/blob/main/RelationalSchema.jpg)
 
+## Tech Used:
+1. Postgresql as RDBMS server
+2. Python3 and Flask for backend
+3. HTML, CSS and Bootstrap for frontend 
+4. Psycopg2 as database adapter for the Python backend
+
+Part of 5th semester Mini-Project for the course Database Management Systems at PES University, Bangalore
