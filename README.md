@@ -34,3 +34,7 @@ Price, Date-time.
 Store id, Customer Support containing Phone Number and Email-id.
 8. Sales - The Sales entity contains the following attributes: Sales-id, Total Revenue, Number of
 copies sold.
+
+![alt ps](https://github.com/Shamanthkolegodu/LoreAthenaeum-Ebooks-store/blob/main/ER-Diagram.jpg)
+
+
