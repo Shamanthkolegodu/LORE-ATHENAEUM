@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request, redirect, Response, json, render_template, url_for
 import psycopg2
-import datetime;
+import datetime
 
 
 app = Flask(__name__)
@@ -16,6 +16,7 @@ user_id_g = None
 
 @app.route('/')
 def main():
+    print("hello world")
     return render_template('index.html')
 
 @app.route('/home/<id>')
@@ -41,7 +42,7 @@ def login():
     try:
         print(username, "'"+str(password)+"'")
         conn = psycopg2.connect(
-            dbname="ebooks1", user=username, password=password, host="localhost")
+            dbname="ebooks", user=username, password=password, host="my_db",port="5432")
         cur = conn.cursor()
         
         query_user = "select userid from "+username+"_user"
@@ -305,7 +306,7 @@ def signup():
 def signup_add_user():
     try:
         conn = psycopg2.connect(
-            dbname="ebooks1", user='postgres', password='skm', host="localhost")
+            dbname="ebooks", user='admin', password='admin@123', host="my_db",port="5432")
         cur = conn.cursor()
         print('1')
         username = request.form.get("username")
@@ -430,7 +431,7 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
 
 '''
